@@ -1,3 +1,8 @@
+import { sequelize } from '../models/index';
+import debug from 'debug';
+
+
+
 /**
  * @swagger
  * /tag/{id}:
@@ -24,8 +29,14 @@
  */
 export const get_tag_by_id = ( request, response ) =>
 {
-    response.json({
-        status: 'sucess',
-        content: { id: Math.random(), label: Math.random.toString( 36 ).slice( 2 ) },
+    sequelize.model( 'Tag' ).findById( request.swagger.params.id.value ).then( content =>
+    {
+        response.json({ content, status: 'sucess' });
+    }).catch( reason =>
+    {
+        logerror( reason );
+        throw reason;
     });
 };
+
+const logerror = debug( 'joke:joke-tag-api:/src/api.tags:error' );
