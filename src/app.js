@@ -46,9 +46,9 @@ export const onAppError = app =>
         const { message = error } = error;
         const body = { status, message };
 
-        if ( err.failedValidation && err.results )
+        if ( error.failedValidation && error.results )
         {
-            body.errors = err.results.errors.map( error =>
+            body.errors = error.results.errors.map( error =>
             {
                 return ({
                     key: error.path[0],
