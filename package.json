@@ -5,7 +5,9 @@
   "license": "MIT",
   "scripts": {
     "test": "yarn run jasmine",
-    "dev": "yarn run chokidar \"src/**/*.js\" \"spec/**/*.js\" --command \"yarn test\""
+    "start": "node --require esm src/index.js",
+    "dev:test": "yarn watch --command \"yarn test\"",
+    "watch": "yarn run chokidar \"src/**/*.js\" \"spec/**/*.js\""
   },
   "devDependencies": {
     "chokidar-cli": "^1.2.2",
