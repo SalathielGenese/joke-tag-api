@@ -23,6 +23,7 @@
     "esm": "^3.2.14",
     "express": "^4.16.4",
     "morgan": "^1.9.1",
+    "mysql2": "^1.6.5",
     "sequelize": "^4.43.0",
     "swagger-jsdoc": "^3.2.7",
     "swagger-tools": "^0.10.4",
