@@ -19,7 +19,7 @@ IS_LOGGING_ENABLED &&
     app.use( morgan( 'dev' ) );
 app.use( express.urlencoded({ extended }) );
 
-app.use( '/ping', ( request, response ) =>
+app.use( '/PING', ( request, response ) =>
 {
     response.json({ status, content: 'PONG' });
 });
