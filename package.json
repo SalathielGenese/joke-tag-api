@@ -13,6 +13,7 @@
     "supertest": "^4.0.0"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "debug": "^4.1.1",
     "esm": "^3.2.14",
