@@ -67,5 +67,4 @@ function onError( error )
     }
 }
 
-
-module.exports = app;
+export { app };
