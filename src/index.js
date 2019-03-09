@@ -9,7 +9,7 @@ import yaml from 'yamljs';
 
 
 const swaggerDefinition = yaml.load( `${ __dirname }/index.yaml` );
-const logmessage = debug( 'joke:joke-api:/src/index:debug' );
+const logmessage = debug( 'joke:joke-tag-api:/src/index:debug' );
 const logerror = debug( 'joke:joke-api:/src/index:error' );
 const IS_NOT_PRODUCTION_MODE = 'production' !== NODE_ENV;
 const useStubs = 'development' === NODE_ENV;
