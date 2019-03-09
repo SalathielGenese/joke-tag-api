@@ -4,11 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-      "test": "yarn run jasmine",
-      "dev": "yarn run chokidar \"src/**/*.js\" \"spec/**/*.js\" --command \"yarn test\""
+    "test": "yarn run jasmine",
+    "dev": "yarn run chokidar \"src/**/*.js\" \"spec/**/*.js\" --command \"yarn test\""
   },
   "devDependencies": {
-    "chokidar": "^2.1.2",
+    "chokidar-cli": "^1.2.2",
     "jasmine": "^3.3.1",
     "supertest": "^4.0.0"
   }
