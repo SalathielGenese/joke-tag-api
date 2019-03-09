@@ -1,4 +1,4 @@
-import { Tag } from '../models/index';
+import { sequelize } from '../models/index';
 import debug from 'debug';
 
 
@@ -24,7 +24,7 @@ import debug from 'debug';
  */
 export const get_tags = ( request, response ) =>
 {
-    Tag.findAll().then( content =>
+    sequelize.model( 'Tag' ).findAll().then( content =>
     {
         response.json({ content, status: 'success' });
     }).catch( reason =>
