@@ -24,11 +24,7 @@ app.use( '/ping', ( request, response ) =>
     response.json({ status, content: 'PONG' });
 });
 
-/**
- *
- * @param { express.Express } app
- */
-export const onAppError = app =>
+export const registerErrorHandlers = () =>
 {
     app.use( ( request, response, next ) =>
     {
