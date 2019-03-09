@@ -1,14 +1,11 @@
 /**
  * @swagger
  * /tags:
- *   x-swagger-router-controller: tags
  *   get:
+ *     tags: [ "Tags" ]
  *     summary: Tags list
  *     operationId: get_tags
- *     description: |
- *       List all tags
- *     tags:
- *       - Tags
+ *     description: List all tags
  *     responses:
  *       200:
  *         $ref: '#/responses/TagsRet'
