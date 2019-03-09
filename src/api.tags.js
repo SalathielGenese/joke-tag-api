@@ -18,8 +18,8 @@ import debug from 'debug';
  *         $ref: '#/responses/serverErrorResponse'
  *
  *
- * @param { import( 'express' ).Request } request
- * @param { import( 'express' ).Response } response
+ * @param { import( 'swagger-tools' ).Swagger20Request } request
+ * @param { import( 'swagger-tools' ).Swagger20Response } response
  *
  */
 export const get_tags = ( request, response ) =>
