@@ -1,3 +1,8 @@
+import { Tag } from '../models/index';
+import debug from 'debug';
+
+
+
 /**
  * @swagger
  * /tags:
@@ -19,8 +24,14 @@
  */
 export const get_tags = ( request, response ) =>
 {
-    response.json({
-        status: 'sucess',
-        content: [],
+    Tag.findAll().then( content =>
+    {
+        response.json({ content, status: 'success' });
+    }).catch( reason =>
+    {
+        logerror( reason );
+        throw reason;
     });
 };
+
+const logerror = debug( 'joke:joke-tag-api:/src/api.tags:error' );
