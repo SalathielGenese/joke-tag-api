@@ -17,7 +17,7 @@ const controllers = __dirname;
 const apiDocs = '/docs/api';
 const swaggerUi = '/docs';
 const swaggerSpec = swagger_js_docs({
-    apis: [`${ controllers }/*.js`],
+    apis: [`${ controllers }/api.*.js`],
     swaggerDefinition,
 });
 
