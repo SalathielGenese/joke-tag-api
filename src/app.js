@@ -1,3 +1,4 @@
+import body_parser from 'body-parser';
 import { NODE_ENV } from './env';
 import express from 'express';
 import morgan from 'morgan';
@@ -13,9 +14,9 @@ const status = 'success';
 const extended = false;
 
 app.use( cors() );
+app.use( body_parser.json() );
 IS_LOGGING_ENABLED &&
-    app.use( morgan( NODE_ENV ) );
-app.use( express.bodyParser.json() );
+    app.use( morgan( 'dev' ) );
 app.use( express.urlencoded({ extended }) );
 
 app.use( '/ping', ( request, response ) =>
