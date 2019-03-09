@@ -1,4 +1,4 @@
-import { NODE_ENV, PORT } from './env';
+import { NODE_ENV } from './env';
 import express from 'express';
 import morgan from 'morgan';
 import debug from 'debug';
