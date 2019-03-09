@@ -7,7 +7,7 @@ import cors from 'cors';
 
 
 
-const logerror = debug( 'joke:joke-api/src/app:error' );
+const logerror = debug( 'joke:joke-api:/src/app:error' );
 const IS_LOGGING_ENABLED = 'test' !== NODE_ENV;
 export const app = express();
 const status = 'success';
