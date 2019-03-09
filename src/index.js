@@ -1,6 +1,7 @@
 import { initializeMiddleware } from 'swagger-tools';
 import { app, registerErrorHandlers  } from './app';
 import swagger_js_docs from 'swagger-jsdoc';
+import { version } from '../package.json';
 import { PORT, NODE_ENV } from './env';
 import debug from 'debug';
 import yaml from 'yamljs';
@@ -19,8 +20,7 @@ const swaggerSpec = swagger_js_docs({
     swaggerDefinition,
 });
 
-swaggerSpec.info.version = require('../package').version;
-
+swaggerSpec.info.version = version;
 initializeMiddleware( swaggerSpec, ( middleware ) =>
 {
     app.use( middleware.swaggerMetadata() );
@@ -44,7 +44,6 @@ initializeMiddleware( swaggerSpec, ( middleware ) =>
         app.listen(PORT);
     }
 });
-
 
 function onError( error )
 {
