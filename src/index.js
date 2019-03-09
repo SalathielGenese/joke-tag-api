@@ -12,6 +12,8 @@ const debugmessage = debug( 'joke:joke-api:/src/index:debug' );
 const logerror = debug( 'joke:joke-api:/src/index:error' );
 const useStubs = 'development' === NODE_ENV;
 const controllers = __dirname;
+const apiDocs = '/docs/api';
+const swaggerUi = '/docs';
 const swaggerSpec = swagger_js_docs({
     apis: [`${ controllers }/*.js`],
     swaggerDefinition,
@@ -28,7 +30,7 @@ initializeMiddleware( swaggerSpec, ( middleware ) =>
         useStubs,
     }) );
 
-    app.use( middleware.swaggerUi() );
+    app.use( middleware.swaggerUi({ swaggerUi, apiDocs }) );
     registerErrorHandlers();
 
 
