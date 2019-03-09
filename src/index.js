@@ -11,6 +11,7 @@ import yaml from 'yamljs';
 const swaggerDefinition = yaml.load( `${ __dirname }/index.yaml` );
 const debugmessage = debug( 'joke:joke-api:/src/index:debug' );
 const logerror = debug( 'joke:joke-api:/src/index:error' );
+const IS_NOT_PRODUCTION_MODE = 'production' !== NODE_ENV;
 const useStubs = 'development' === NODE_ENV;
 const controllers = __dirname;
 const apiDocs = '/docs/api';
@@ -21,6 +22,8 @@ const swaggerSpec = swagger_js_docs({
 });
 
 swaggerSpec.info.version = version;
+IS_NOT_PRODUCTION_MODE &&
+    swaggerSpec.schemes.push( 'http' );
 initializeMiddleware( swaggerSpec, ( middleware ) =>
 {
     app.use( middleware.swaggerMetadata() );
