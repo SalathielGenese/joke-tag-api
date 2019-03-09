@@ -24,3 +24,50 @@ produces:
 tags:
   - name: Tags
     description: Create, Query, Delete tags.
+definitions:
+  Tag:
+    type: object
+    required:
+      - label
+      - id
+    properties:
+      id:
+        type: integer
+        format: int64
+      label:
+        type: string
+
+responses:
+  TagRet:
+    description: A tag, as returned by server
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          example: string
+        content:
+          $ref: '#/definitions/Tag'
+  TagsRet:
+    description: A tag, as returned by server
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          example: string
+        content:
+          type: array
+          items:
+            $ref: '#/definitions/Tag'
+  serverErrorResponse:
+    description: Internal server error response
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Database is unreachable
