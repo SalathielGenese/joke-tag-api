@@ -1,4 +1,4 @@
-const { NODE_ENV } = require( '../../src/env' );
+import { NODE_ENV } from '../../src/env';
 
 
 describe( 'nothing', () =>
