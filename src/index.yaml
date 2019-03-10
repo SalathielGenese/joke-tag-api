@@ -95,14 +95,13 @@ responses:
           type: string
           example: Validation error
         errors:
-          type: object
-          properties:
-            label:
-              type: array
-              properties:
-                id:
-                  type: string
-                  example: label
-                message:
-                  type: string
-                  example: Duplicate field value
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: label
+              message:
+                type: string
+                example: Duplicate field value
