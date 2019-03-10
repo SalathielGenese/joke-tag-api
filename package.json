@@ -7,7 +7,8 @@
     "test": "yarn run jasmine",
     "start": "node --require esm src/index.js",
     "dev:test": "yarn run nodemon --ext \"**/*.js\" --exec \"yarn test\"",
-    "dev:start": "yarn run nodemon --ext \"src/**/*.js\" --exec \"yarn start\""
+    "dev:start": "yarn run nodemon --ext \"src/**/*.js\" --exec \"yarn start\"",
+    "dev": "yarn run nodemon --ext \"**/*.js\" --exec \"yarn test && yarn start\""
   },
   "nodemonConfig": {
     "ignore": [ "node_modules/*", ".git/*" ],
