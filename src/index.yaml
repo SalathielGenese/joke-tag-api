@@ -38,6 +38,18 @@ definitions:
         type: string
 
 responses:
+  TagDeleteRet:
+    description: Tag successful deletion response
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        content:
+          type: number
+          example: number
+          description: ID of deleted tag
   TagRet:
     description: A tag, as returned by server
     schema:
@@ -55,7 +67,7 @@ responses:
       properties:
         status:
           type: string
-          example: string
+          example: success
         content:
           type: array
           items:
