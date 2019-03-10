@@ -6,8 +6,12 @@
   "scripts": {
     "test": "yarn run jasmine",
     "start": "node --require esm src/index.js",
-    "dev:test": "yarn watch --command \"yarn test\"",
-    "watch": "yarn run chokidar \"src/**/*.js\" \"spec/**/*.js\""
+    "dev:test": "yarn run nodemon --ext \"**/*.js\" --exec \"yarn test\""
+  },
+  "nodemonConfig": {
+    "ignore": [ "node_modules/*", ".git/*" ],
+    "ext": "js,json,yml,yaml",
+    "delay": "500"
   },
   "devDependencies": {
     "jasmine": "^3.3.1",
