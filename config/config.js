@@ -1,8 +1,8 @@
-import { PG_DB, PG_HOST, PG_USER, PG_PASSWORD } from '../src/env';
+const { PG_DB, PG_HOST, PG_USER, PG_PASSWORD } = require( '../src/env' );
 
 
 
-export default {
+module.exports = {
   development: {
     password: PG_PASSWORD,
     dialect: "postgres",
@@ -23,5 +23,5 @@ export default {
     username: PG_USER,
     database: PG_DB,
     host: PG_HOST,
-  }
-}
+  },
+};
