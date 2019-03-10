@@ -44,6 +44,7 @@ export const registerErrorHandlers = () =>
 
         if ( error.failedValidation && error.results )
         {
+            error.status = 409;
             body.errors = error.results.errors.map( error =>
             {
                 return ({
