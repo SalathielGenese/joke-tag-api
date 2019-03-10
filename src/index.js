@@ -3,6 +3,7 @@ import { app, registerErrorHandlers  } from './app';
 import swagger_js_docs from 'swagger-jsdoc';
 import { version } from '../package.json';
 import { PORT, NODE_ENV } from './env';
+import * as db from '../models/index';
 import debug from 'debug';
 import yaml from 'yamljs';
 
@@ -40,12 +41,12 @@ initializeMiddleware( swaggerSpec, ( middleware ) =>
 
     app.set('port', PORT);
 
-    if ( require.main == module )
+    require.main == module && db.sequelize.sync().then( () =>
     {
         app.on('listening', () => logmessage( `Listening ::${ PORT }` ) );
         app.on('error', onError);
         app.listen(PORT);
-    }
+    });
 });
 
 function onError( error )
