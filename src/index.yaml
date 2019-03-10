@@ -83,3 +83,26 @@ responses:
         message:
           type: string
           example: Database is unreachable
+  duplicateTagLabelErrorResponse:
+    description: Privided tag label already exists
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Validation error
+        errors:
+          type: object
+          properties:
+            label:
+              type: array
+              properties:
+                id:
+                  type: string
+                  example: label
+                message:
+                  type: string
+                  example: Duplicate field value
