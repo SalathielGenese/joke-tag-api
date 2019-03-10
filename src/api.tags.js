@@ -36,7 +36,7 @@ export const get_tags = ( request, response ) =>
 /**
  * @swagger
  * /tags:
- *   get:
+ *   post:
  *     tags: [ "Tags" ]
  *     summary: Tags list
  *     operationId: post_tags
@@ -44,13 +44,14 @@ export const get_tags = ( request, response ) =>
  *     parameters:
  *     - in: body
  *       name: label
- *       type: string
  *       required: true
+ *       schema:
+ *         type: string
  *     responses:
  *       200:
  *         $ref: '#/responses/TagRet'
  *       409:
- *         $ref: '#/responses/duplicateLabelErrorResponse'
+ *         $ref: '#/responses/duplicateTagLabelErrorResponse'
  *       500:
  *         $ref: '#/responses/serverErrorResponse'
  *
