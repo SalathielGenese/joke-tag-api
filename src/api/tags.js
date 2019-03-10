@@ -38,7 +38,7 @@ export const get_tags = ( request, response ) =>
  * /tags:
  *   post:
  *     tags: [ "Tags" ]
- *     summary: Tags list
+ *     summary: Tags creation
  *     operationId: tags_post_tags
  *     description: Create tag
  *     parameters:
@@ -103,7 +103,7 @@ export const post_tags = ( request, response ) =>
  * /tag/{id}:
  *   get:
  *     tags: [ "Tags" ]
- *     summary: Tags list
+ *     summary: Tag fetch by ID
  *     operationId: tags_get_tag
  *     description: Get tag by its ID
  *     parameters:
@@ -139,7 +139,7 @@ export const get_tag = ( request, response ) =>
  * /tag/{id}:
  *   delete:
  *     tags: [ "Tags" ]
- *     summary: Tags list
+ *     summary: Tag delete
  *     operationId: tags_delete_tag
  *     description: Delete tag by its ID
  *     parameters:
