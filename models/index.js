@@ -1,11 +1,10 @@
-'use strict';
+import { NODE_ENV } from '../models/index';
 
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
+const config = require(__dirname + '/../config/config.js')[ NODE_ENV ];
 const db = {};
 
 let sequelize;
