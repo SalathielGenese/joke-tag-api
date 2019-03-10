@@ -13,11 +13,11 @@ const logmessage = debug( 'joke:joke-tag-api:/src/index:debug' );
 const logerror = debug( 'joke:joke-api:/src/index:error' );
 const IS_NOT_PRODUCTION_MODE = 'production' !== NODE_ENV;
 const useStubs = 'development' === NODE_ENV;
-const controllers = __dirname;
+const controllers = `${ __dirname }/api`;
 const apiDocs = '/docs/api';
 const swaggerUi = '/docs';
 const swaggerSpec = swagger_js_docs({
-    apis: [`${ controllers }/api.*.js`],
+    apis: [`${ controllers }/**/*.js`],
     swaggerDefinition,
 });
 
