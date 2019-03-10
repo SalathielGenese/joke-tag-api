@@ -5,9 +5,9 @@ if ( 'development' === NODE_ENV )
     process.env.DEBUB = '*';
 
 const PG_PASSWORD = process.env.PG_PASSWORD || 'postgres';
-const PG_HOST = process.env.PG_HOST || 'postgres';
+const PG_HOST = process.env.PG_HOST || 'localhost';
 const PG_USER = process.env.PG_USER || 'postgres';
-const PG_DB = process.env.PG_DB || 'postgres';
+const PG_DB = process.env.PG_DB || 'db';
 
 
 module.exports = {
