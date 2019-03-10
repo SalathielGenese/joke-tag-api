@@ -83,7 +83,7 @@ responses:
         message:
           type: string
           example: Database is unreachable
-  duplicateTagLabelErrorResponse:
+  validationErrorResponse:
     description: Privided tag label already exists
     schema:
       type: object
