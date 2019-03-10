@@ -51,7 +51,7 @@ export const get_tags = ( request, response ) =>
  *       200:
  *         $ref: '#/responses/TagRet'
  *       409:
- *         $ref: '#/responses/duplicateTagLabelErrorResponse'
+ *         $ref: '#/responses/validationErrorResponse'
  *       500:
  *         $ref: '#/responses/serverErrorResponse'
  *
@@ -70,7 +70,7 @@ export const post_tags = ( request, response ) =>
         {
             const error = new Error( 'Validation error' );
 
-            error.status = 409;
+            error.failedValidation = true;
             error.results = {
                 errors: [
                     {
