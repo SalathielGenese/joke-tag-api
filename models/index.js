@@ -1,4 +1,4 @@
-import { NODE_ENV } from '../models/index';
+import { NODE_ENV } from '../src/env';
 
 const fs = require('fs');
 const path = require('path');
