@@ -2,6 +2,28 @@
 
 API for tags management (CRUD)
 
+## Requirements
+
+**Environement variables :**
+
+- `PG_PASSWORD` : Postgres password - default to `"postgres"`
+- `PG_DB` : Postgres database - default to `"postgres"`
+- `PG_HOST` : Postgres host - default to `"localhost"`
+- `PG_USER` : Postgres user - default to `"postgres"`
+
+- `NODE_ENV` : NodeJS environement - default to `"development"`
+- `PORT` : TCP port to bind app on - default to `3000`
+
+**Softwares :**
+
+- Yarn
+- Node
+- Postgres server
+
+**Setup :**
+
+- Postgres database need to be created beforehand/manually
+
 ## Clone
 
 ```bash
