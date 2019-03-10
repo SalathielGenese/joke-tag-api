@@ -24,9 +24,70 @@ import debug from 'debug';
  */
 export const get_tags = ( request, response ) =>
 {
-    sequelize.model( 'Tag' ).findAll().then( content =>
+    return sequelize.model( 'Tag' ).findAll().then( content =>
     {
         response.json({ content, status: 'success' });
+    }).catch( reason =>
+    {
+        logerror( reason );
+        throw reason;
+    });
+};
+/**
+ * @swagger
+ * /tags:
+ *   get:
+ *     tags: [ "Tags" ]
+ *     summary: Tags list
+ *     operationId: post_tags
+ *     description: Create tag
+ *     parameters:
+ *     - in: body
+ *       name: label
+ *       type: string
+ *       required: true
+ *     responses:
+ *       200:
+ *         $ref: '#/responses/TagRet'
+ *       409:
+ *         $ref: '#/responses/duplicateLabelErrorResponse'
+ *       500:
+ *         $ref: '#/responses/serverErrorResponse'
+ *
+ *
+ * @param { import( 'swagger-tools' ).Swagger20Request } request
+ * @param { import( 'swagger-tools' ).Swagger20Response } response
+ *
+ */
+export const post_tags = ( request, response ) =>
+{
+    const label = request.swagger.params.label.value;
+
+    return sequelize.model( 'Tag' ).findAll({ where: { label } }).then( tags =>
+    {
+        if ( tags.length )
+        {
+            const error = new Error( 'Validation error' );
+
+            error.status = 409;
+            error.results = {
+                errors: [
+                    {
+                        path: [ 'label' ],
+                        message: 'Duplicate field value',
+                    },
+                ],
+            };
+
+            throw error;
+        }
+        else
+        {
+            return sequelize.model( 'Tag' ).create({ label }).then( content =>
+            {
+                response.json({ content, status: 'success' });
+            });
+        }
     }).catch( reason =>
     {
         logerror( reason );
