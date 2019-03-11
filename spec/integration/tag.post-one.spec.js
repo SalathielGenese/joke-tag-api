@@ -13,8 +13,9 @@ describe( 'POST /tags', () =>
 
         beforeEach( async () =>
         {
+            label = uuid();
             response = await endpoint.api
-                .post( '/tags' ).send({ label: uuid() }).then();
+                .post( '/tags' ).send({ label }).then();
         });
 
         afterEach( async () =>
@@ -26,6 +27,10 @@ describe( 'POST /tags', () =>
          * @type { import( 'supertest' ).Response }
          */
         let response;
+        /**
+         * @type { string }
+         */
+        let label;
 
         describe( 'body', () =>
         {
@@ -53,6 +58,11 @@ describe( 'POST /tags', () =>
             it( '.content.label is string', () =>
             {
                 expect( typeof response.body.content.label ).toBe( 'string' );
+            });
+
+            it( '.content.label equals label', () =>
+            {
+                expect( response.body.content.label ).toBe( label );
             });
 
         });
