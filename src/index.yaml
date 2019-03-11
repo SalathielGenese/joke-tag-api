@@ -46,6 +46,7 @@ responses:
         status:
           type: string
           example: success
+          enum: [ success ]
         content:
           type: number
           example: number
@@ -57,7 +58,8 @@ responses:
       properties:
         status:
           type: string
-          example: string
+          example: success
+          enum: [ success ]
         content:
           $ref: '#/definitions/Tag'
   TagsRet:
@@ -68,6 +70,7 @@ responses:
         status:
           type: string
           example: success
+          enum: [ success ]
         content:
           type: array
           items:
@@ -80,6 +83,7 @@ responses:
         status:
           type: string
           example: error
+          enum: [ error ]
         message:
           type: string
           example: Database is unreachable
@@ -91,9 +95,11 @@ responses:
         status:
           type: string
           example: error
+          enum: [ error ]
         message:
           type: string
           example: Validation error
+          enum: [ "Validation error" ]
         errors:
           type: array
           items:
