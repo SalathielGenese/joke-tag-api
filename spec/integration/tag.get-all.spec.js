@@ -21,6 +21,26 @@ describe( 'GET /tags', () =>
 
     describe( 'response', () =>
     {
+
+        beforeEach( async () =>
+        {
+            response = await endpoint.api.get( '/tags' ).then();
+        });
+
+        /**
+         * @type { import( 'supertest' ).Response }
+         */
+        let response;
+
+        describe( 'body', () =>
+        {
+
+            it( 'is object', () =>
+            {
+                expect( typeof response.body ).toBe( 'object' );
+            });
+
+        });
     });
 
 });
