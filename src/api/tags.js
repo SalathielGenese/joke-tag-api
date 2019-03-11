@@ -128,7 +128,14 @@ export const get_tag = ( request, response ) =>
 {
     return sequelize.model( 'Tag' ).findById( request.swagger.params.id.value ).then( content =>
     {
-        response.json({ content, status: 'sucess' });
+        if ( null === content )
+        {
+            response.status( 404 ).json({ status: 'error', message: 'Not found' });
+        }
+        else
+        {
+            response.json({ content, status: 'sucess' });
+        }
     }).catch( reason =>
     {
         logerror( reason );
