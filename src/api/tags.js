@@ -67,27 +67,22 @@ export const get_tags = ( request, response ) =>
  */
 export const post_tags = ( request, response ) =>
 {
-    const label = request.body.label.value;
-    console.log({ label });
-
+    const { label } = request.swagger.params.tag.value;
 
     return sequelize.model( 'Tag' ).findAll({ where: { label } }).then( tags =>
     {
         if ( tags.length )
         {
-            const error = new Error( 'Validation error' );
-
-            error.failedValidation = true;
-            error.results = {
+            response.status( 409 ).json({
+                status: 'error',
+                message: 'Validation error',
                 errors: [
                     {
-                        path: [ 'label' ],
+                        key: 'label',
                         message: 'Duplicate field value',
                     },
                 ],
-            };
-
-            throw error;
+            });
         }
         else
         {
