@@ -114,6 +114,8 @@ export const post_tags = ( request, response ) =>
  *     responses:
  *       200:
  *         $ref: '#/responses/TagRet'
+ *       404:
+ *         $ref: '#/responses/404ErrorResponse'
  *       500:
  *         $ref: '#/responses/serverErrorResponse'
  *
