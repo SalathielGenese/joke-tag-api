@@ -43,10 +43,15 @@ export const get_tags = ( request, response ) =>
  *     description: Create tag
  *     parameters:
  *     - in: body
- *       name: label
+ *       name: tag
  *       required: true
  *       schema:
- *         type: string
+ *         required:
+ *         - label
+ *         type: object
+ *         properties:
+ *           label:
+ *             type: string
  *     responses:
  *       200:
  *         $ref: '#/responses/TagRet'
