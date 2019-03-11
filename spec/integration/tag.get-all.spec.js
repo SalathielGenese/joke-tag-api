@@ -45,6 +45,11 @@ describe( 'GET /tags', () =>
                 expect( response.body.status ).toBe( 'success' );
             });
 
+            it( '.content as Array', () =>
+            {
+                expect( Array.isArray( response.body.content ) ).toBe( true );
+            });
+
         });
     });
 
