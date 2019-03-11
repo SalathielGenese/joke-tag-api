@@ -45,6 +45,11 @@ describe( 'POST /tags', () =>
                 expect( typeof response.body.content ).toBe( 'object' );
             });
 
+            it( '.content.id is number', () =>
+            {
+                expect( typeof response.body.content.id ).toBe( 'number' );
+            });
+
         });
 
     });
