@@ -75,6 +75,19 @@ responses:
           type: array
           items:
             $ref: '#/definitions/Tag'
+  404ErrorResponse:
+    description: Not found
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+          enum: [ error ]
+        message:
+          type: string
+          example: Not found
+          enum: [ "Not found" ]
   serverErrorResponse:
     description: Internal server error response
     schema:
