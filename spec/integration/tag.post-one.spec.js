@@ -50,6 +50,11 @@ describe( 'POST /tags', () =>
                 expect( typeof response.body.content.id ).toBe( 'number' );
             });
 
+            it( '.content.label is string', () =>
+            {
+                expect( typeof response.body.content.label ).toBe( 'string' );
+            });
+
         });
 
     });
