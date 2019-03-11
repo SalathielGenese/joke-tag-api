@@ -40,6 +40,11 @@ describe( 'POST /tags', () =>
                 expect( response.body.status ).toBe( 'success' );
             });
 
+            it( '.content is object', () =>
+            {
+                expect( typeof response.body.content ).toBe( 'object' );
+            });
+
         });
 
     });
