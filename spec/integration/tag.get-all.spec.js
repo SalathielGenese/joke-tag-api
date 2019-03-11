@@ -40,6 +40,11 @@ describe( 'GET /tags', () =>
                 expect( typeof response.body ).toBe( 'object' );
             });
 
+            it( '.status is "success"', () =>
+            {
+                expect( response.body.status ).toBe( 'success' );
+            });
+
         });
     });
 
