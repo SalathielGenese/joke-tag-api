@@ -55,6 +55,13 @@ describe( 'GET /tag/{id}', () =>
                 expect( typeof content ).toBe( 'object' );
             });
 
+            it( '.content.id is number', async () =>
+            {
+                const { body: { content: { id } } } = await endpoint.api.get( `/tag/${ tag.id }` ).then();
+
+                expect( typeof id ).toBe( 'number' );
+            });
+
         });
 
     });
