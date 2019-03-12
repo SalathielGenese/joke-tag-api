@@ -41,6 +41,13 @@ describe( 'GET /tag/{id}', () =>
                 expect( typeof body ).toBe( 'object' );
             });
 
+            it( '.status equals "success"', async () =>
+            {
+                const { body: { status } } = await endpoint.api.get( `/tag/${ tag.id }` ).then();
+
+                expect( status ).toBe( 'success' );
+            });
+
         });
 
     });
