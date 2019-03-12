@@ -38,13 +38,13 @@ export const registerErrorHandlers = () =>
 
     app.use( ( error, request, response, next ) =>
     {
-        const { status: code = 500 } = error;
+        let { status: code = 500 } = error;
         const { message = error } = error;
         const body = { status, message };
 
         if ( error.failedValidation && error.results )
         {
-            error.status = 409;
+            code = 409;
             body.errors = error.results.errors.map( error =>
             {
                 return ({
