@@ -1,5 +1,4 @@
 import { sequelize } from '../../models/index';
-import debug from 'debug';
 
 
 
@@ -172,5 +171,3 @@ export const delete_tag = ( request, response, next ) =>
         response.json({ content: id, status: 'success' });
     }).catch( next );
 };
-
-const logerror = debug( 'joke:joke-tag-api:/src/api.tags:error' );
