@@ -67,6 +67,13 @@ describe( 'POST /tags', () =>
 
         });
 
+        it( 'HTTP 409 upon duplicate label', async () =>
+        {
+            const { status } = await endpoint.api.post( '/tags' ).send({ label }).then( void 0, reason => reason );
+
+            expect( status ).toBe( 409 );
+        });
+
     });
 
 });
