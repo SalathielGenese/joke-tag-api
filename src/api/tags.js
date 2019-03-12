@@ -134,7 +134,7 @@ export const get_tag = ( request, response ) =>
         }
         else
         {
-            response.json({ content, status: 'sucess' });
+            response.json({ content, status: 'success' });
         }
     }).catch( reason =>
     {
