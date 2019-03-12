@@ -28,4 +28,21 @@ describe( 'GET /tag/{id}', () =>
         expect( status ).toBe( 404 );
     });
 
+    describe( 'response', () =>
+    {
+
+        describe( 'body', () =>
+        {
+
+            it( 'is object', async () =>
+            {
+                const { body } = await endpoint.api.get( `/tag/${ tag.id }` ).then();
+
+                expect( typeof body ).toBe( 'object' );
+            });
+
+        });
+
+    });
+
 });
