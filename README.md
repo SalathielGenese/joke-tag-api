@@ -57,8 +57,6 @@ yarn test
 
 ## Run dev
 
-> **NOTE : tests are currently failling due to [not yet debuged issue](https://github.com/visionmedia/supertest/issues/484)**
-
 Restart test and app on change. _(App won't be started when tests fail !)_
 
 ```bash
