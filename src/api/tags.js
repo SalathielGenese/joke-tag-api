@@ -173,7 +173,7 @@ export const delete_tag = ( request, response ) =>
 
     return sequelize.model( 'Tag' ).destroy({ where: { id } }).then( () =>
     {
-        response.json({ content: id, status: 'sucess' });
+        response.json({ content: id, status: 'success' });
     }).catch( reason =>
     {
         logerror( reason );
