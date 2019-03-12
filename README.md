@@ -46,6 +46,9 @@ yarn install
 yarn start
 ```
 
+- Visit the Swagger API at `${HOST}:${PORT}/docs`
+- Check the healthy state of the app at `${HOST}:${PORT}/PING`
+
 ## Run tests
 
 ```bash
@@ -56,7 +59,7 @@ yarn test
 
 > **NOTE : tests are currently failling due to [not yet debuged issue](https://github.com/visionmedia/supertest/issues/484)**
 
-Restart test and app on change
+Restart test and app on change. _(App won't be started when tests fail !)_
 
 ```bash
 yarn dev
