@@ -18,20 +18,18 @@ import debug from 'debug';
  *         $ref: '#/responses/serverErrorResponse'
  *
  *
+ * @param { import( 'express' ).NextFunction } next
  * @param { import( 'swagger-tools' ).Swagger20Request } request
  * @param { import( 'swagger-tools' ).Swagger20Response & import( 'express' ).Response } response
+ * @param { import( 'express' ).NextFunction } next
  *
  */
-export const get_tags = ( request, response ) =>
+export const get_tags = ( request, response, next ) =>
 {
     return sequelize.model( 'Tag' ).findAll().then( content =>
     {
         response.json({ content, status: 'success' });
-    }).catch( reason =>
-    {
-        logerror( reason );
-        throw reason;
-    });
+    }).catch( next );
 };
 /**
  * @swagger
@@ -63,9 +61,10 @@ export const get_tags = ( request, response ) =>
  *
  * @param { import( 'swagger-tools' ).Swagger20Request } request
  * @param { import( 'swagger-tools' ).Swagger20Response & import( 'express' ).Response } response
+ * @param { import( 'express' ).NextFunction } next
  *
  */
-export const post_tags = ( request, response ) =>
+export const post_tags = ( request, response, next ) =>
 {
     const { label } = request.swagger.params.tag.value;
 
@@ -73,29 +72,26 @@ export const post_tags = ( request, response ) =>
     {
         if ( tags.length )
         {
-            response.status( 409 ).json({
-                status: 'error',
-                message: 'Validation error',
+            const error = new Error( 'Validation error' );
+
+            error.failedValidation = true;
+            error.results = {
                 errors: [
                     {
-                        key: 'label',
+                        path: [ 'label' ],
                         message: 'Duplicate field value',
                     },
                 ],
-            });
+            };
+
+            throw error;
         }
-        else
+
+        return sequelize.model( 'Tag' ).create({ label }).then( content =>
         {
-            return sequelize.model( 'Tag' ).create({ label }).then( content =>
-            {
-                response.json({ content, status: 'success' });
-            });
-        }
-    }).catch( reason =>
-    {
-        logerror( reason );
-        throw reason;
-    });
+            response.json({ content, status: 'success' });
+        });
+    }).catch( next );
 };
 
 /**
@@ -122,25 +118,24 @@ export const post_tags = ( request, response ) =>
  *
  * @param { import( 'swagger-tools' ).Swagger20Request } request
  * @param { import( 'swagger-tools' ).Swagger20Response & import( 'express' ).Response } response
+ * @param { import( 'express' ).NextFunction } next
  *
  */
-export const get_tag = ( request, response ) =>
+export const get_tag = ( request, response, next ) =>
 {
     return sequelize.model( 'Tag' ).findById( request.swagger.params.id.value ).then( content =>
     {
         if ( null === content )
         {
-            response.status( 404 ).json({ status: 'error', message: 'Not found' });
+            const error = new Error( 'Not found' );
+
+            error.status = 404;
+
+            throw error;
         }
-        else
-        {
-            response.json({ content, status: 'success' });
-        }
-    }).catch( reason =>
-    {
-        logerror( reason );
-        throw reason;
-    });
+
+        response.json({ content, status: 'success' });
+    }).catch( next );
 };
 
 /**
@@ -165,6 +160,7 @@ export const get_tag = ( request, response ) =>
  *
  * @param { import( 'swagger-tools' ).Swagger20Request } request
  * @param { import( 'swagger-tools' ).Swagger20Response & import( 'express' ).Response } response
+ * @param { import( 'express' ).NextFunction } next
  *
  */
 export const delete_tag = ( request, response, next ) =>
@@ -174,11 +170,7 @@ export const delete_tag = ( request, response, next ) =>
     return sequelize.model( 'Tag' ).destroy({ where: { id } }).then( () =>
     {
         response.json({ content: id, status: 'success' });
-    }).catch( reason =>
-    {
-        logerror( reason );
-        throw reason;
-    });
+    }).catch( next );
 };
 
 const logerror = debug( 'joke:joke-tag-api:/src/api.tags:error' );
