@@ -62,6 +62,13 @@ describe( 'GET /tag/{id}', () =>
                 expect( typeof id ).toBe( 'number' );
             });
 
+            it( '.content.label equals label', async () =>
+            {
+                const { body: { content: { label: response_label } } } = await endpoint.api.get( `/tag/${ tag.id }` ).then();
+
+                expect( response_label ).toBe( label );
+            });
+
         });
 
     });
