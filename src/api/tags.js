@@ -19,7 +19,7 @@ import debug from 'debug';
  *
  *
  * @param { import( 'swagger-tools' ).Swagger20Request } request
- * @param { import( 'swagger-tools' ).Swagger20Response } response
+ * @param { import( 'swagger-tools' ).Swagger20Response & import( 'express' ).Response } response
  *
  */
 export const get_tags = ( request, response ) =>
@@ -62,7 +62,7 @@ export const get_tags = ( request, response ) =>
  *
  *
  * @param { import( 'swagger-tools' ).Swagger20Request } request
- * @param { import( 'swagger-tools' ).Swagger20Response } response
+ * @param { import( 'swagger-tools' ).Swagger20Response & import( 'express' ).Response } response
  *
  */
 export const post_tags = ( request, response ) =>
@@ -121,7 +121,7 @@ export const post_tags = ( request, response ) =>
  *
  *
  * @param { import( 'swagger-tools' ).Swagger20Request } request
- * @param { import( 'swagger-tools' ).Swagger20Response } response
+ * @param { import( 'swagger-tools' ).Swagger20Response & import( 'express' ).Response } response
  *
  */
 export const get_tag = ( request, response ) =>
@@ -164,10 +164,10 @@ export const get_tag = ( request, response ) =>
  *
  *
  * @param { import( 'swagger-tools' ).Swagger20Request } request
- * @param { import( 'swagger-tools' ).Swagger20Response } response
+ * @param { import( 'swagger-tools' ).Swagger20Response & import( 'express' ).Response } response
  *
  */
-export const delete_tag = ( request, response ) =>
+export const delete_tag = ( request, response, next ) =>
 {
     const id = request.swagger.params.id.value;
 
