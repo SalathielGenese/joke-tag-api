@@ -12,6 +12,8 @@ API for tags management (CRUD)
 - `PG_USER` : Postgres user - default to `"postgres"`
 
 - `NODE_ENV` : NodeJS environement - default to `"development"`
+- `DEBUG` : See debug log with `"joke:joke-tag-api:*:debug"`
+- `DEBUG` : See errors with `"joke:joke-tag-api:*:error"`
 - `PORT` : TCP port to bind app on - default to `3000`
 
 **Softwares :**
