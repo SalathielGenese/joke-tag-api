@@ -26,9 +26,8 @@ import { sequelize } from '../../models/index';
 export const get_tags = ( request, response, next ) =>
 {
     return Tag.findAll().then( content =>
-    {
-        response.json({ content, status: 'success' });
-    }).catch( next );
+        response.json({ content, status: 'success' })
+    ).catch( next );
 };
 
 /**
@@ -83,8 +82,7 @@ export const post_tags = ( request, response, next ) =>
                     },
                 ],
             };
-            next( error );
-            return;
+            throw error;
         }
 
         return Tag.create({ label }).then( content =>
@@ -205,8 +203,7 @@ export const get_tag = ( request, response, next ) =>
             const error = new Error( 'Not found' );
 
             error.status = 404;
-            next( error );
-            return;
+            throw error;
         }
 
         response.json({ content, status: 'success' });
