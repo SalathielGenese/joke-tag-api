@@ -28,6 +28,20 @@ describe( 'GET /tag/{id}', () =>
         expect( status ).toBe( 404 );
     });
 
+    it( 'response body is object, if not found', async () =>
+    {
+        const { response: { body } } = await endpoint.api.get( `/tag/${ tag.id + 1E7 }` ).then( void 0, reason => reason );
+
+        expect( typeof body ).toBe( 'object' );
+    });
+
+    it( 'response body .status equals "error", if not found', async () =>
+    {
+        const { response: { body: { status } } } = await endpoint.api.get( `/tag/${ tag.id + 1E7 }` ).then( void 0, reason => reason );
+
+        expect( status ).toBe( 'error' );
+    });
+
     describe( 'response', () =>
     {
 
