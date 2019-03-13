@@ -82,8 +82,8 @@ export const post_tags = ( request, response, next ) =>
                     },
                 ],
             };
-
-            throw error;
+            next( error );
+            return;
         }
 
         return sequelize.model( 'Tag' ).create({ label }).then( content =>
