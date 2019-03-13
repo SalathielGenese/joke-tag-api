@@ -30,6 +30,7 @@ export const get_tags = ( request, response, next ) =>
         response.json({ content, status: 'success' });
     }).catch( next );
 };
+
 /**
  * @swagger
  * /tags:
@@ -91,6 +92,79 @@ export const post_tags = ( request, response, next ) =>
             response.json({ content, status: 'success' });
         });
     }).catch( next );
+};
+
+/**
+ * @swagger
+ * /tag/{id}:
+ *   put:
+ *     tags: [ "Tags" ]
+ *     summary: Tags update
+ *     operationId: tags_put_tag
+ *     description: Update a tag
+ *     parameters:
+ *     - in: path
+ *       name: id
+ *       type: number
+ *       required: true
+ *     - in: body
+ *       name: tag
+ *       required: true
+ *       schema:
+ *         required:
+ *         - label
+ *         type: object
+ *         properties:
+ *           label:
+ *             type: string
+ *     responses:
+ *       200:
+ *         $ref: '#/responses/TagRet'
+ *       404:
+ *         $ref: '#/responses/404ErrorResponse'
+ *       409:
+ *         $ref: '#/responses/validationErrorResponse'
+ *       500:
+ *         $ref: '#/responses/serverErrorResponse'
+ *
+ *
+ * @param { import( 'swagger-tools' ).Swagger20Request } request
+ * @param { import( 'swagger-tools' ).Swagger20Response & import( 'express' ).Response } response
+ * @param { import( 'express' ).NextFunction } next
+ *
+ */
+export const put_tag = ( request, response, next ) =>
+{
+    const { value: id } = request.swagger.params.id;
+    const { label } = request.swagger.params.tag.value;
+
+    Tag.findById( id ).then( tag =>
+    {
+        if ( null !== tag ) return;
+        const error = new Error( 'Not found' );
+
+        error.status = 404;
+        throw error;
+    }).then( () =>
+        Tag.find({ where: { label } })
+    ).then( ( tag ) =>
+    {
+        if ( null === tag || id == tag.id ) return;
+
+        const error = new Error( 'Validation error' );
+
+        error.failedValidation = true;
+        error.results = { errors: [ {
+            path: [ 'label' ],
+            message: 'Duplicate field value',
+        } ] };
+
+        throw error;
+    }).then( () =>
+        Tag.update({ label }, { where: { id } })
+    ).then( content =>
+        response.json({ content, status: 'sucess' })
+    ).catch( next );
 };
 
 /**
