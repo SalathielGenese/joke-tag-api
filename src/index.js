@@ -43,9 +43,10 @@ initializeMiddleware( swaggerSpec, ( middleware ) =>
 
     require.main == module && db.sequelize.sync().then( () =>
     {
-        app.on('listening', () => logmessage( `Listening ::${ PORT }` ) );
         app.on('error', onError);
-        app.listen(PORT);
+        app.listen( PORT, () =>
+            logmessage( `Listening ::${ PORT }` )
+        );
     });
 });
 
