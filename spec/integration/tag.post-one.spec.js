@@ -74,6 +74,27 @@ describe( 'POST /tags', () =>
             expect( status ).toBe( 409 );
         });
 
+        it( 'response body is object upon duplicate label', async () =>
+        {
+            const { response: { body } } = await endpoint.api.post( '/tags' ).send({ label }).then( void 0, reason => reason );
+
+            expect( typeof body ).toBe( 'object' );
+        });
+
+        it( 'response body .status equals "error" upon duplicate label', async () =>
+        {
+            const { response: { body: { status } } } = await endpoint.api.post( '/tags' ).send({ label }).then( void 0, reason => reason );
+
+            expect( status ).toBe( 'error' );
+        });
+
+        it( 'response body .errors includes { key: "label" } upon duplicate label', async () =>
+        {
+            const { response: { body: { errors } } } = await endpoint.api.post( '/tags' ).send({ label }).then( void 0, reason => reason );
+
+            expect( errors.some( ({ key }) => 'label' === key ) ).toBe( true );
+        });
+
     });
 
 });
