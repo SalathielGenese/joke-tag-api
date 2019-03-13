@@ -140,16 +140,16 @@ export const put_tag = ( request, response, next ) =>
 
     Tag.findById( id ).then( tag =>
     {
-        if ( null !== tag ) return;
+        if ( null !== tag ) return tag;
         const error = new Error( 'Not found' );
 
         error.status = 404;
         throw error;
-    }).then( () =>
-        Tag.find({ where: { label } })
-    ).then( ( tag ) =>
+    }).then( async tag =>
+        [ tag, await Tag.find({ where: { label } }) ]
+    ).then( ([ tag, tagById ] ) =>
     {
-        if ( null === tag || id == tag.id ) return;
+        if ( null === tagById || id == tagById.id ) return tag;
 
         const error = new Error( 'Validation error' );
 
@@ -160,10 +160,12 @@ export const put_tag = ( request, response, next ) =>
         } ] };
 
         throw error;
-    }).then( () =>
-        Tag.update({ label }, { where: { id } })
-    ).then( content =>
-        response.json({ content, status: 'sucess' })
+    }).then( tag =>
+    {
+        tag.label = label;
+        return tag.save();
+    }).then( content =>
+        response.json({ content, status: 'success' })
     ).catch( next );
 };
 
