@@ -4,7 +4,7 @@ import uuid from 'uuid';
 
 
 
-describe( 'GET /tag/{id}', () =>
+describe( 'DELETE /tag/{id}', () =>
 {
     beforeEach( async () =>
     {
