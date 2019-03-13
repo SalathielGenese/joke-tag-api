@@ -15,12 +15,12 @@ describe( 'PUT /tag/{id}', () =>
         {
             label = uuid();
             tag = await Tag.create({ label: uuid() });
-            response = await endpoint.api.put( `/tag/${ tag.id }` ).send({ label }).then();
+            response = await endpoint.api.put( `/tag/${ tag.id }` ).send({ label }).then().catch( reason => reason );
         });
 
         afterEach( async () =>
         {
-            await Tag.destroy({ where: { id: response.body.id } });
+            await Tag.destroy({ where: { id: tag.id } });
         });
 
         /**
