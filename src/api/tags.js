@@ -129,8 +129,7 @@ export const get_tag = ( request, response, next ) =>
             const error = new Error( 'Not found' );
 
             error.status = 404;
-
-            throw error;
+            next( error );
         }
 
         response.json({ content, status: 'success' });
