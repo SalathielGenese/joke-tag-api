@@ -130,6 +130,7 @@ export const get_tag = ( request, response, next ) =>
 
             error.status = 404;
             next( error );
+            return;
         }
 
         response.json({ content, status: 'success' });
