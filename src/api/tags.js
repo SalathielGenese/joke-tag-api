@@ -25,7 +25,7 @@ import { sequelize } from '../../models/index';
  */
 export const get_tags = ( request, response, next ) =>
 {
-    return sequelize.model( 'Tag' ).findAll().then( content =>
+    return Tag.findAll().then( content =>
     {
         response.json({ content, status: 'success' });
     }).catch( next );
@@ -67,7 +67,7 @@ export const post_tags = ( request, response, next ) =>
 {
     const { label } = request.swagger.params.tag.value;
 
-    return sequelize.model( 'Tag' ).findAll({ where: { label } }).then( tags =>
+    return Tag.findAll({ where: { label } }).then( tags =>
     {
         if ( tags.length )
         {
@@ -86,7 +86,7 @@ export const post_tags = ( request, response, next ) =>
             return;
         }
 
-        return sequelize.model( 'Tag' ).create({ label }).then( content =>
+        return Tag.create({ label }).then( content =>
         {
             response.json({ content, status: 'success' });
         });
@@ -122,7 +122,7 @@ export const post_tags = ( request, response, next ) =>
  */
 export const get_tag = ( request, response, next ) =>
 {
-    return sequelize.model( 'Tag' ).findById( request.swagger.params.id.value ).then( content =>
+    return Tag.findById( request.swagger.params.id.value ).then( content =>
     {
         if ( null === content )
         {
@@ -166,8 +166,10 @@ export const delete_tag = ( request, response, next ) =>
 {
     const id = request.swagger.params.id.value;
 
-    return sequelize.model( 'Tag' ).destroy({ where: { id } }).then( () =>
+    return Tag.destroy({ where: { id } }).then( () =>
     {
         response.json({ content: id, status: 'success' });
     }).catch( next );
 };
+
+const Tag = sequelize.model( 'Tag' );
